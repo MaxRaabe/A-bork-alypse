@@ -33,12 +33,34 @@ namespace PPA
         // Update is called once per frame
         void Update() {
             if(r_characterActions.Left.IsPressed)
-                MoveLeft();
-            
+                MoveLeft(r_characterActions.Left.Value);
+            if (r_characterActions.Right.IsPressed)
+                MoveRight(r_characterActions.Right.Value);
+            if (r_characterActions.Left.WasReleased || r_characterActions.Right.WasReleased) {
+                if(r_controller.m_isGrounded)
+                    StopMovement();
+            }
+            if (r_characterActions.Jump.IsPressed && r_controller.m_isGrounded)
+                Jump();
+                
+
         }
 
-        void MoveLeft() {
-            r_controller.r_rb.AddForce(r_joystick.LeftStick,0);
+        void MoveLeft(float x) {
+            Debug.Log("Pressed Left");
+            r_controller.r_rb.AddForce(new Vector2( -r_controller.m_speed * x , 0 ));
         }
+        void MoveRight(float x) {
+            Debug.Log("Pressed Right");
+            r_controller.r_rb.AddForce(new Vector2( r_controller.m_speed * x , 0 ));
+        }
+        void Jump() {
+            Debug.Log("Pressed Jump");
+            r_controller.r_rb.AddForce(new Vector2(0, r_controller.m_jumpForce));
+        }
+        void StopMovement() {
+            r_controller.r_rb.velocity = new Vector2(Mathf.Lerp(r_controller.r_rb.velocity.x,0,0.5f), 0);
+        }
+
     }
 }
