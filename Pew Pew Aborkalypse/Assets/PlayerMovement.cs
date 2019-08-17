@@ -8,8 +8,11 @@ namespace PPA
     public class PlayerMovement : MonoBehaviour
     {
         public PlayerController r_controller;
+        public Weapon r_weapon;
         private InputDevice r_joystick;
         MyCharacterActions r_characterActions;
+
+
 
         private void Start() {
             r_joystick = InputManager.ActiveDevice;
@@ -42,6 +45,9 @@ namespace PPA
             }
             if (r_characterActions.Jump.IsPressed && r_controller.m_isGrounded)
                 Jump();
+            if (r_characterActions.Shoot.IsPressed) {
+                r_weapon.Shoot();
+            }
                 
 
         }
@@ -56,10 +62,10 @@ namespace PPA
         }
         void Jump() {
             Debug.Log("Pressed Jump");
-            r_controller.r_rb.AddForce(new Vector2(0, r_controller.m_jumpForce));
+            r_controller.r_rb.velocity = new Vector2(r_controller.r_rb.velocity.x, r_controller.m_jumpForce);
         }
         void StopMovement() {
-            r_controller.r_rb.velocity = new Vector2(Mathf.Lerp(r_controller.r_rb.velocity.x,0,0.5f), 0);
+            r_controller.r_rb.velocity = new Vector2(Mathf.Lerp(r_controller.r_rb.velocity.x,0,0.4f), 0);
         }
 
     }

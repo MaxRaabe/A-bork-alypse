@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 384302222}
   - component: {fileID: 384302224}
   - component: {fileID: 384302223}
+  - component: {fileID: 384302229}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -151,7 +152,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 384302221}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 77af7a553de53da42b7d64b542fecc14, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -172,12 +173,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   r_rb: {fileID: 384302226}
   r_groundCheckTransform: {fileID: 1551920153}
-  r_groundCheckRadius: 0.43
+  r_groundCheckRadius: 0.2
   r_groundLayer:
     serializedVersion: 2
     m_Bits: 256
   m_speed: 50
-  m_jumpForce: 800
+  m_jumpForce: 20
   m_topspeed: 50
   m_isGrounded: 0
 --- !u!114 &384302224
@@ -193,6 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   r_controller: {fileID: 384302223}
+  r_weapon: {fileID: 384302229}
 --- !u!61 &384302225
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -233,7 +235,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 2
   m_LinearDrag: 1.5
-  m_AngularDrag: 0
+  m_AngularDrag: 0.005
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -301,9 +303,25 @@ Transform:
   m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_Children:
   - {fileID: 1551920153}
+  - {fileID: 936048222}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &384302229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384302221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7658e26ad93f994438a773872ddbaa1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  r_bullet: {fileID: 1528886480926280679, guid: 994b5ad4eb06234429fc19f7dc38ae4a,
+    type: 3}
+  r_barrel: {fileID: 936048222}
 --- !u!1 &404319916
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,6 +465,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &936048221
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 936048222}
+  m_Layer: 0
+  m_Name: Barrel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &936048222
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936048221}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.94, y: 0.232, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 384302228}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1181372880
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,7 +596,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181372880}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.21, y: 0.11, z: -0.6229289}
+  m_LocalPosition: {x: 8.18, y: -1.01, z: -0.6229289}
   m_LocalScale: {x: 4.1267924, y: 0.8355481, z: 0.8151689}
   m_Children: []
   m_Father: {fileID: 0}
@@ -792,7 +840,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1569193017}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.43, y: 3.34, z: -0.6229289}
+  m_LocalPosition: {x: -1.73, y: 1.22, z: -0.6229289}
   m_LocalScale: {x: 4.1267924, y: 0.8355481, z: 0.8151689}
   m_Children: []
   m_Father: {fileID: 0}
@@ -899,7 +947,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1708803304}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.92, y: -2.76, z: -0.6229289}
+  m_LocalPosition: {x: 0.18, y: -3.49, z: -0.6229289}
   m_LocalScale: {x: 4.1267924, y: 0.8355481, z: 0.8151689}
   m_Children: []
   m_Father: {fileID: 0}

@@ -19,8 +19,11 @@ namespace PPA
         [SerializeField] public float m_speed;
         [SerializeField] public float m_jumpForce;
         [SerializeField] public float m_topspeed;
+        
  
         [HideInInspector]public bool m_isGrounded;
+        
+
         #endregion
 
         // Start is called before the first frame update
@@ -32,7 +35,9 @@ namespace PPA
         // Update is called once per frame
         void Update() {
             m_isGrounded = Physics2D.OverlapCircle(r_groundCheckTransform.position,r_groundCheckRadius,r_groundLayer);
+            
         }
-      
+
+       
     }
 }
